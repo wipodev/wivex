@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio";
+import he from "he";
 import { processElement } from "./elementProcessor.js";
 import { resolvedAnidedKey, resolvedReactiveAttr } from "../helpers/reactiveUtils.js";
 
@@ -30,9 +31,8 @@ function processInnerHTML(tagName, index, innerHTML, resolveReactiveKey, getName
 
     children.each((i, el) => {
       if (el.type === "text") {
-        const textContent = $(el).text();
-        if (textContent) {
-          innerHTMLCode += processTextContent(tagName, index, textContent, resolveReactiveKey, i);
+        if ($(el).text().trim()) {
+          innerHTMLCode += processTextContent(tagName, index, $(el).text(), resolveReactiveKey, i);
         }
       } else if (el.type === "tag") {
         innerHTMLCode += processElement($, el, `${i}${index}`, `${tagName}${index}`, resolveReactiveKey, getName);
@@ -47,6 +47,7 @@ function processInnerHTML(tagName, index, innerHTML, resolveReactiveKey, getName
 
 function processTextContent(tagName, index, innerHTML, resolveReactiveKey, subIndex) {
   if (!innerHTML) return "";
+  innerHTML = he.decode(innerHTML);
 
   const textNodeName = `${tagName}${index}TextNode${subIndex}`;
   if (innerHTML.includes("{")) {

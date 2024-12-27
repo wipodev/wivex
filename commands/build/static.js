@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import puppeteer from "puppeteer";
-import { findFile } from "./utils.js";
+import { findFile } from "../utils.js";
 
 export async function prebuildStatic(rootDir, outputDir, baseUrl) {
   const browser = await puppeteer.launch();

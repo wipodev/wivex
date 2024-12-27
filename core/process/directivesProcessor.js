@@ -50,7 +50,7 @@ function processDirectiveOn(config) {
 
 function processDirectiveFor(config) {
   const [item, array] = config.value.split(" in ").map((str) => str.trim());
-  let forCode = `${config.resolveReactiveKey(array)}.forEach((${item}, id) => {\n`;
+  let forCode = `${config.resolveReactiveKey(array)}.forEach((${item}) => {\n`;
   forCode += resolveChildCreation({ ...config, item, directive: "data-for" });
   forCode += "});\n";
   return forCode;

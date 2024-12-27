@@ -14,6 +14,7 @@ export function init(options) {
 
     if (fs.existsSync(packageJsonPath)) {
       const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+      pkg.scripts = pkg.scripts || {};
       pkg.scripts = {
         ...pkg.scripts,
         dev: pkg.scripts.dev || `wivex dev ${options.root ? `-r ${options.root}` : ""}`,
