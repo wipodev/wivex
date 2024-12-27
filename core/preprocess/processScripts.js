@@ -25,7 +25,7 @@ export function scriptProcessor(stringCode) {
       ...Object.entries(scriptContent.props).map(([key]) => [key, "this.props"]),
       ...Object.entries(scriptContent.methods).map(([key]) => [key, "this"]),
     ].reduce((func, [key, prefix]) => {
-      const regex = new RegExp(`(?<![-\\w])${key}\\b`, "g");
+      const regex = new RegExp(`(^|\\s)${key}\\b`, "gi");
       return func.replace(regex, `${prefix}.${key}`);
     }, body);
   };
@@ -38,16 +38,6 @@ export function scriptProcessor(stringCode) {
       scriptContent.indexes.imports.end = match.index + match[0].length;
     }
 
-    while ((match = stateRegex.exec(stringCode))) {
-      const [, stateName, stateValue] = match;
-      scriptContent.state[stateName] = stateValue || "";
-      scriptContent.indexes.state.push({
-        name: stateName,
-        start: match.index,
-        end: stateRegex.lastIndex,
-      });
-    }
-
     while ((match = propsRegex.exec(stringCode))) {
       const [, propName, propValue] = match;
       scriptContent.props[propName] = propValue || "";
@@ -58,6 +48,16 @@ export function scriptProcessor(stringCode) {
       });
     }
 
+    while ((match = stateRegex.exec(stringCode))) {
+      const [, stateName, stateValue] = match;
+      scriptContent.state[stateName] = updateBody(stateValue) || "";
+      scriptContent.indexes.state.push({
+        name: stateName,
+        start: match.index,
+        end: stateRegex.lastIndex,
+      });
+    }
+
     while ((match = functionRegex.exec(stringCode))) {
       const name = match[1] || match[4];
       const params = match[2] || match[5] || "";
@@ -65,7 +65,13 @@ export function scriptProcessor(stringCode) {
 
       if (!name) continue;
 
-      const classMethod = `${name}(${params}) { ${updateBody(body)} }`;
+      const newBody = updateBody(body);
+      
+      let classMethod = `${name}(${params}) { ${newBody} }`;
+
+      if (newBody.includes("await")){
+        classMethod = `async ${name}(${params}) { ${newBody} }`;
+      }
 
       scriptContent.methods[name] = classMethod;
       scriptContent.indexes.methods.push({
