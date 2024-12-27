@@ -5,9 +5,10 @@ import { createReactiveResolver, createGetName } from "../helpers/reactiveUtils.
 
 export function ProcessComponent(component, componentName) {
   const { preProcessedTemplate, scriptContent, headContent, styleContent } = preprocessComponent(component);
-  const { imports, state, props } = scriptContent;
+  const { imports, state, props, methods } = scriptContent;
   const stateKeys = Object.keys(state);
   const propKeys = Object.keys(props);
+  const methodKeys = Object.keys(methods);
   const $ = cheerio.load(preProcessedTemplate);
 
   if ($("body").children().length > 1) {
@@ -17,7 +18,7 @@ export function ProcessComponent(component, componentName) {
   const rootElement = $("body").children().first();
   const container = `${rootElement[0].name}0`;
 
-  const resolveReactiveKey = createReactiveResolver(stateKeys, propKeys);
+  const resolveReactiveKey = createReactiveResolver(stateKeys, propKeys, methodKeys);
   const getName = createGetName(imports);
 
   const templateContent = rootElement
