@@ -1,0 +1,19 @@
+<!--
+  WiVex Logo
+  
+  Copyright (c) 2024 WipoDev
+
+  This logo is proprietary and intended solely for representing the WiVex project.
+  It is NOT covered by the project's Creative Commons or MIT licenses and may not
+  be used, modified, or distributed outside of this project without explicit permission.
+-->
+<svg width="200" height="200" version="1.1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <linearGradient id="linearGradient39" x1="83.753" x2="137.4" y1="64.508" y2="64.508" gradientTransform="matrix(3.6535 0 0 3.6535 -303.99 -135.68)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#16b6eb" offset="0"/>
+   <stop stop-color="#705daf" offset=".63732"/>
+  </linearGradient>
+ </defs>
+ <path d="m-194.62 110.65-6.5112-27.273h5.6369l4.1114 18.734 4.9857-18.734h6.5484l4.7811 19.05 4.1858-19.05h5.5438l-6.6228 27.273h-5.8415l-5.4322-20.389-5.4136 20.389zm38.278 0v-20.833h4.2065v20.833zm59.309 0v-20.833h15.447v3.5243h-11.241v4.6186h10.459v3.5101h-10.459v5.6702h11.639v3.5101zm29.624 0-4.9739-20.833h4.3059l3.1406 14.311 3.8086-14.311h5.0023l3.6522 14.552 3.1975-14.552h4.2349l-5.0591 20.833h-4.4623l-4.1496-15.575-4.1354 15.575zm-67.789 0-9.7482-27.273h5.9717l6.9019 20.185 6.6787-20.185h5.8415l-9.7668 27.273zm23.972 0v-20.833h4.2065v20.833z" fill-rule="evenodd" stroke-width=".052917"/>
+ <path d="m91.032 75.584-37.605-21.783m37.542 65.241 0.06247-43.458 37.667-21.675m-0.0625 43.458-37.667 21.675-37.605-21.783 0.06248-43.458 37.667-21.675 37.605 21.783zm47.178 27.329 0.0624-49.258m17.948 35.841 0.0668-55.278m0 0-51.036-29.563m-0.0292 29.856 0.0427-29.849m11.255 61.511 21.752-12.517m0 0-33.03-19.133m-51.955 117.26 0.060649-42.383m-84.843-6.7282 34.486-19.844m135.22 20.088-35.835-20.758m-133.82-12.439-0.047204 32.953 84.783 49.111 84.923-48.867" fill="none" stroke="url(#linearGradient39)" stroke-linecap="round" stroke-linejoin="round" stroke-width="8.2166"/>
+</svg>
